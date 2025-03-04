@@ -6,12 +6,33 @@
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
+            Spacing="25"
+            VerticalOptions="Center">
             
-            <Label Text="How many cards should I pick?" FontSize="18" HorizontalOptions="Center"/>
-            
-            
-            
+            <Label 
+                Text="How many cards should I pick?" 
+                SemanticProperties.Description="How many cards should I pick?"
+                FontSize="18" 
+                HorizontalOptions="Center"/>
+
+            <Entry 
+                x:Name="NumberOfCards" 
+                SemanticProperties.Description="Enter the number of cards to pick"
+                Placeholder="Enter the number of cards to pick"/>
+
+            <Button 
+                x:Name="PickCardsButton"
+                SemanticProperties.Hint="Pick some cards"
+                Text="Pick some cards" 
+                Clicked="PickCardsButton_Clicked"/>
+
+            <Label 
+                x:Name="PickedCards"
+                SemanticProperties.Description="Shows the cards that were picked"
+                Padding="20" 
+                TextColor="White" 
+                BackgroundColor="Blue"/>
+
         </VerticalStackLayout>
     </ScrollView>
 

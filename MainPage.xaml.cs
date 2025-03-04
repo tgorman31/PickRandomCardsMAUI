@@ -1,25 +1,34 @@
-﻿namespace PickRandomCardsMAUI
+﻿using PickRandomCards;
+
+namespace PickRandomCardsMAUI;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+
+    public MainPage()
     {
-        int count = 0;
-
-        public MainPage()
-        {
-            InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
+        InitializeComponent();
     }
 
+    private void PickCardsButton_Clicked(object sender, EventArgs e)
+    {
+        if (int.TryParse(NumberOfCards.Text, out int numCards))
+        {
+            PickedCards.Text = String.Empty;
+            string[] pickedCards = CardPicker.PickSomeCards(numCards);
+            foreach (string card in pickedCards)
+            {
+                PickedCards.Text += card + Environment.NewLine;
+            }
+
+            PickedCards.Text += Environment.NewLine + "You picked " + numCards + " cards.";
+
+        }
+        else
+        {
+            PickedCards.Text = "Please enter a valid number";
+        }
+
+
+    }
 }
